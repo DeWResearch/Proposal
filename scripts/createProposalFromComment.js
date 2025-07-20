@@ -1,5 +1,5 @@
 // scripts/createProposalFromComment.js
-import { Wallet, providers } from 'ethers'
+import { Wallet, JsonRpcProvider } from 'ethers'
 import { Client } from '@aragon/sdk-client'
 
 const commentBody = process.env.COMMENT_BODY
@@ -20,7 +20,8 @@ async function main() {
     return
   }
 
-  const signer = new Wallet(privateKey, new providers.JsonRpcProvider(rpcUrl))
+  const provider = new JsonRpcProvider(rpcUrl)
+  const signer = new Wallet(privateKey, provider)
 
   const client = new Client({
     network: 'sepolia',
