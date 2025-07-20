@@ -1,6 +1,7 @@
 // scripts/createProposalFromComment.js
 import { Wallet, JsonRpcProvider } from 'ethers'
-import { Client, Context, ContextParams } from '@aragon/sdk-client'
+import aragon from '@aragon/sdk-client'
+const { Client, Context, ContextParams } = aragon
 
 const commentBody = process.env.COMMENT_BODY
 const commentAuthor = process.env.COMMENT_AUTHOR
