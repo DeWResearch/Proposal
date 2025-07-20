@@ -1,0 +1,30 @@
+name: Auto Proposal from GitHub Comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  create-proposal:
+    if: contains(github.event.comment.body, '#proposal')
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run proposal script
+        run: node scripts/createProposalFromComment.js
+        env:
+          COMMENT_BODY: "${{ github.event.comment.body }}"
+          COMMENT_AUTHOR: "${{ github.event.comment.user.login }}"
+          DAO_ADDRESS: ${{ secrets.DAO_ADDRESS }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          RPC_URL: ${{ secrets.RPC_URL }}

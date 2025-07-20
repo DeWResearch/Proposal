@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@aragon/sdk-client": "^1.26.0",
+    "ethers": "^6.15.0"
+  }
+}
