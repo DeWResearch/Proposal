@@ -25,7 +25,7 @@ async function main() {
   const signer = new Wallet(privateKey, provider)
   const contextParams = {
   network: "sepolia",
-  web3Providers: "https://developer.metamask.io/",
+  web3Providers: [provider],
   signer,
 };
 
